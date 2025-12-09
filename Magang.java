@@ -32,15 +32,122 @@ public class Magang {
     }
 
     static void tambahData() {
+        if (jumlahData >= 20) {
+            System.out.println("Kuota penyimpanan penuh!");
+            return;
+        }
+
+        System.out.print("Nama Mahasiswa: ");
+        dataMagang[jumlahData][0] = s.nextLine();
+
+        System.out.print("NIM: ");
+        dataMagang[jumlahData][1] = s.nextLine();
+
+        System.out.print("Program Studi: ");
+        dataMagang[jumlahData][2] = s.nextLine();
+
+        System.out.print("Perusahaan Tujuan Magang: ");
+        dataMagang[jumlahData][3] = s.nextLine();
+
+        String semester;
+        do {
+            System.out.print("Semester pengambilan magang (6 atau 7): ");
+            semester = s.nextLine();
+            if (!semester.equals("6") && !semester.equals("7")) {
+                System.out.println(" Semester tidak valid! Hanya 6 atau 7.");
+            }
+        } while (!semester.equals("6") && !semester.equals("7"));
+        dataMagang[jumlahData][4] = semester;
+
+        String status;
+        do {
+            System.out.print("Status magang (Diterima/Menunggu/Ditolak): ");
+            status = s.nextLine();
+            if (!status.equalsIgnoreCase("Diterima") &&
+                    !status.equalsIgnoreCase("Menunggu") &&
+                    !status.equalsIgnoreCase("Ditolak")) {
+                System.out.println("Status tidak valid!");
+            }
+        } while (!status.equalsIgnoreCase("Diterima") &&
+                !status.equalsIgnoreCase("Menunggu") &&
+                !status.equalsIgnoreCase("Ditolak"));
+        dataMagang[jumlahData][5] = status;
+
+        jumlahData++;
+        System.out.println("Data pendaftaran magang berhasil ditambahkan. Total pendaftar: " + jumlahData);
 
     }
 
     static void tampilkanSemua() {
-        
+        if (jumlahData == 0) {
+            System.out.println("Belum ada pendaftar.");
+            return;
+        }
+
+        System.out.println("\n=== Daftar Semua Pendaftar Magang ===");
+        System.out.printf("%-3s %-15s %-12s %-15s %-20s %-10s %-10s\n",
+                "No", "Nama", "NIM", "Prodi", "Perusahaan", "Semester", "Status");
+        System.out.println(
+                "-----------------------------------------------------------------------------------------------");
+
+        String[] format = {
+                "%-15s ", // Nama
+                "%-12s ", // NIM
+                "%-15s ", // Prodi
+                "%-20s ", // Perusahaan
+                "%-10s ", // Semester
+                "%-10s " // Status
+        };
+        for (int i = 0; i < jumlahData; i++) {
+            System.out.printf("%-3d ", (i + 1));
+            for (int j = 0; j < 6; j++) {
+                System.out.printf(format[j], dataMagang[i][j]);
+            }
+            System.out.println();
+        }
+
     }
 
     static void cariProdi() {
-        
+        if (jumlahData == 0) {
+            System.out.println("Belum ada pendaftar.");
+            return;
+        }
+
+        System.out.print("Masukkan Program Studi: ");
+        String prodi = s.nextLine();
+        boolean ditemukan = false;
+
+        System.out.println("\n=== Data Pendaftar Prodi: " + prodi + " ===");
+        System.out.printf("%-3s %-15s %-12s %-20s %-10s %-10s\n",
+                "No", "Nama", "NIM", "Prodi", "Perusahaan", "Semester", "Status");
+        System.out.println("-------------------------------------------------------------------------------");
+
+        String[] format = {
+                "%-15s ", // Nama
+                "%-12s ", // NIM
+                "%-15s ", // Prodi
+                "%-20s ", // Perusahaan
+                "%-10s ", // Semester
+                "%-10s " // Status
+        };
+
+        for (int i = 0; i < jumlahData; i++) {
+            if (dataMagang[i][2].equalsIgnoreCase(prodi)) {
+                System.out.printf("%-3d ", (i + 1));
+
+                for (int j = 0; j < 6; j++) {
+                    System.out.printf(format[j], dataMagang[i][j]);
+                }
+                System.out.println();
+                ditemukan = true;
+            }
+        }
+
+        if (!ditemukan) {
+            System.out.println("Tidak ada pendaftar dari prodi tersebut.");
+        }
+
     }
 
     static void hitungStatus() {
