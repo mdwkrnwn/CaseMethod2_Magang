@@ -85,15 +85,15 @@ public class Magang {
         }
 
         System.out.println("\n=== Daftar Semua Pendaftar Magang ===");
-        System.out.printf("%-3s %-15s %-12s %-15s %-20s %-10s %-10s\n",
+        System.out.printf("%-3s %-15s %-12s %-25s %-20s %-10s %-10s\n",
                 "No", "Nama", "NIM", "Prodi", "Perusahaan", "Semester", "Status");
         System.out.println(
-                "-----------------------------------------------------------------------------------------------");
+                "---------------------------------------------------------------------------------------------------");
 
         String[] format = {
                 "%-15s ", // Nama
                 "%-12s ", // NIM
-                "%-15s ", // Prodi
+                "%-25s ", // Prodi
                 "%-20s ", // Perusahaan
                 "%-10s ", // Semester
                 "%-10s " // Status
@@ -119,14 +119,14 @@ public class Magang {
         boolean ditemukan = false;
 
         System.out.println("\n=== Data Pendaftar Prodi: " + prodi + " ===");
-        System.out.printf("%-3s %-15s %-12s %-20s %-10s %-10s\n",
+        System.out.printf("%-3s %-15s %-12s %-25s %-10s %-10s\n",
                 "No", "Nama", "NIM", "Prodi", "Perusahaan", "Semester", "Status");
-        System.out.println("-------------------------------------------------------------------------------");
+        System.out.println("-----------------------------------------------------------------------------------");
 
         String[] format = {
                 "%-15s ", // Nama
                 "%-12s ", // NIM
-                "%-15s ", // Prodi
+                "%-25s ", // Prodi
                 "%-20s ", // Perusahaan
                 "%-10s ", // Semester
                 "%-10s " // Status
